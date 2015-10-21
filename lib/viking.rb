@@ -14,25 +14,24 @@ module Viking
 
   DEFAULT_BUFFER_SIZE = 4096
 
-  def self.set_username(conf)
+  def self.get_username
     username     = Java::java.lang.System.getProperty("HADOOP_USER_NAME") || UserGroupInformation.getCurrentUser().getShortUserName()
-    conf.set("hadoop.job.ugi", username);
   end
 
   def self.configure(config)
     path         = URI.new(config[:path])
     conf         = Configuration.new
-    set_username(conf)
 
     @buffer_size = config[:buffer_size]
-    @client      = DistributedFileSystem.new
-    @client.initialize__method(path, conf)
+    @client      = FileSystem.newInstance(path, conf, get_username)
   end
 
   def self.client
-    conf = Configuration.new
-    set_username(conf)
-    @client ||= FileSystem.get_local(conf)
+    @client ||= begin
+      conf = Configuration.new
+      conf.set("hadoop.job.ugi", get_username)
+      FileSystem.get_local(conf)
+    end
   end
 
   def self.buffer_size
