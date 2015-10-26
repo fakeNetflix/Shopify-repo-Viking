@@ -9,12 +9,18 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    lock_jar (0.10.3)
-      naether (~> 0.13.8)
+    httpclient (2.6.0.1)
+    lock_jar (0.13.0)
+      naether (~> 0.15.0)
       thor (>= 0.18.1)
-    naether (0.13.8-java)
-    rake (10.2.1)
-    thor (0.18.1)
+    naether (0.15.0)
+      httpclient
+      rjb (> 1.4.0, < 1.6.0)
+    naether (0.15.0-java)
+      httpclient
+    rake (10.4.2)
+    rjb (1.5.3)
+    thor (0.19.1)
 
 PLATFORMS
   java
