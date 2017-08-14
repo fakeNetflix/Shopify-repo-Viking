@@ -1,6 +1,7 @@
 #!/usr/bin/env rake
 
 require 'rake/testtask'
+require "bundler/gem_tasks"
 
 Rake::TestTask.new do |t|
   t.libs << 'lib/viking'

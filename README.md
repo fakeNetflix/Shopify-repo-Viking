@@ -52,3 +52,19 @@ hdfs classes.
       Viking::Dir.mkdir(path)
     end
 
+Releasing a new version
+-----------------------
+
+1. Update the version in `version.rb`
+2. Commit this to master
+3. Tag the commit with `git tag <version>` from (1) and run `git push --tags`
+4. Go to [Shipit](https://shipit.shopify.io/shopify/Viking/production) and click deploy on the respective commit
+
+Installation
+---
+
+```ruby
+source 'https://packages.shopify.io/shopify/gems' do
+  gem 'hdfs-viking'
+end
+```
